@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Cherry</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="static/css/default.css">
+	<link rel="stylesheet" type="text/css" href="static/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/vicons-font.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/buttons.css" />    
+  	<script src="/static/js/typewriter.js"></script>
+    <style>
+        li{
+            display: inline-block;
+        }
+		html, body {
+		  width: 100%;
+		  height: 100%;
+		  overflow: hidden;
+		}
+
+		#container {
+		  overflow: hidden;
+		  position: absolute;
+		  top: 0; left: 0; right: 0; bottom: 0;
+		}
+
+		#background_video {
+		  position: absolute;
+		  top: 50%; left: 50%;
+		  transform: translate(-50%, -50%);
+		  object-fit: cover;
+		  height: 100%; width: 100%;
+		}
+
+		#video_cover {
+		  position: absolute;
+		  width: 100%; height: 100%;
+		  background: url('/static/images/video_cover.jpeg') no-repeat;
+		  background-size: cover;
+		  background-position: center;
+		}
+		#play img {
+		  width: 100px;
+		}
+		#pause img {
+		  width: 90px;
+		}
+		#pause {
+		  display: none;
+		}
+
+		@media (min-width: 768px) {
+		  #video_controls {
+		    display: none;
+		  }
+		}
+
+		/* Demo page specific styles */
+
+
+		#container {
+		  height: 100%;
+		}
+
+		#overlay {
+		  position: absolute;
+		  top: 0; right: 0; left: 0; bottom: 0;
+		  background: rgba(0,0,0,0.5);
+		}
+
+		#main_content {
+		  z-index: 2;
+		  position: relative;
+		  display: inline-block;
+		  /* Vertical center */
+		  top: 50%;
+		  transform: translateY(-50%);
+		}
+
+		#main_content .sub_head {
+		  color: rgba(255,255,255,0.5);
+		  font-size: 18px;
+		}
+
+		#main_content .info {
+		  color: rgba(255,255,255,0.5);
+		  font-size: 12px;
+		  margin-top: 10px;
+		}
+
+		#links {
+		  margin-top: 50px;
+		}
+
+		#links a {
+		  border: 2px solid rgba(255,255,255,0.20);
+		  border-radius: 61px;
+		  font-size: 12px;
+		  color: #FFFFFF;
+		  letter-spacing: 1px;
+		  text-decoration: none;
+		  text-transform: uppercase;
+		  padding: 10px 25px;
+		  display: inline-block;
+		  margin-right: 15px;
+		}
+		#enter{
+			position: absolute;
+			top:340px;
+			left: 40%;
+			transform: translateX(-90px);
+			z-index: 5;
+		}
+    </style>
+  </head>
+	<script src="https://use.typekit.net/nlq1kdt.js"></script>
+  	<script>try{Typekit.load({ async: true });}catch(e){}</script>  
+  <body>
+	<div id="container">
+	    <video id="background_video" loop muted></video>
+	    <div id="video_cover"></div>
+	    <div id="overlay"></div>
+	      	<div id="mainDiv">
+			    <div id="content">
+					<div id="code">
+			    		<span  />2017年10月19日18点59分，离7点还差1分钟，我在国权路的一栋写字楼里，坐了整整11个小时，最终将我的故事告诉你。</span><br />
+			    		<span /><span id="localTime"></span>，你来了，我站在人民广场或者还是那个写字楼里，很开心。</span><br />
+		    		</div>		    			
+			    </div>		    
+	      	</div>
+		<button class="button button--nina button--text-thick button--text-upper button--size-s" data-text="Enter" id="enter">
+		<span>E</span><span>n</span><span>t</span><span>e</span><span>r</span>
+		</button>		    			    
+  	</div>
+	<script src="/static/js/bideo.js"></script>
+  	<script src="/static/js/bacMain.js"></script>
+  	<script src="/static/js/jquery-2.1.0.js"></script>
+    <div id="app" style="display: none;"></div>
+ 	<script type="text/javascript">
+ 		var LocalTimer = document.getElementById("localTime").innerHTML;
+		var myDate = new Date();
+		var myHours = myDate.getHours(); 
+		if(myHours == 0){
+			myHours = 24;
+		} 		
+		var str= myDate.getFullYear()+"年"+myDate.getMonth()+"月"+myDate.getDate()+"日"+myHours+"时"+myDate.getMinutes()+"分";
+		var LocalTimer = str;
+		console.log(LocalTimer)
+		console.log($("#localTime").text(LocalTimer))
+
+
+		document.getElementById("code").typewriter();
+		(function() {
+				var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+				if(isSafari) {
+					document.getElementById('support-note').style.display = 'block';
+				}
+			})();
+
+
+		var hello = $("#hello");
+		$("#hello").remove();
+
+		// 按钮显示	
+		var timer = setInterval('setTime()',1000);
+		var time = 0;
+		var setTime = function(){
+			time++;
+		// console.log(time)
+		if(time == 1){
+			window.clearInterval(timer);
+			$('#enter').animate({
+				"opacity":"1"
+			},1000)		}
+		}
+		
+		
+		// container隐藏
+		$("#enter").click(function(){
+			$("#container").slideUp(500);
+		})
+		
+
+
+    </script>    
+  </body>
+</html>
